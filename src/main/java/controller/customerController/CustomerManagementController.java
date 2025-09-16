@@ -88,7 +88,7 @@ public class CustomerManagementController implements Initializable {
 
     @FXML
     void update(ActionEvent event) {
-
+int number;
     }
 
     @Override

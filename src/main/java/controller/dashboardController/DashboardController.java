@@ -34,7 +34,7 @@ public class DashboardController {
 
     @FXML
     void item(ActionEvent event) {
-
+int number;
     }
 
     @FXML
