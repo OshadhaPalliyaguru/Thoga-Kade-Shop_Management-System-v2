@@ -16,7 +16,7 @@ public class CustomerManagementController implements CustomerManagamentService {
         String SQL = "INSERT INTO customer (CustID , CustTitle, CustName, DOB ,salary,CustAddress, City, Province, PostalCode) VALUES(?,?,?,?,?,?,?,?,?);";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/thogakade","root","3690");
+            Connection connection = Dbconnection.getDbconnection().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
             preparedStatement.setObject(1,cus.getCustId());

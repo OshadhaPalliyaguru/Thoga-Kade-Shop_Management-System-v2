@@ -62,7 +62,7 @@
             <JFXTextField fx:id="packsizetxt" layoutX="451.0" layoutY="368.0" prefHeight="25.0" prefWidth="186.0" />
             <JFXTextField fx:id="unitpricetxt" layoutX="683.0" layoutY="367.0" prefHeight="25.0" prefWidth="186.0" />
             <JFXTextField fx:id="qtyonhandtxt" layoutX="902.0" layoutY="367.0" prefHeight="25.0" prefWidth="186.0" />
-            <Button fx:id="updatebtn" layoutX="39.0" layoutY="186.0" mnemonicParsing="false" onAction="#btnupdate" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #0009ff; -fx-background-radius: 10px;" text="Add New " textFill="WHITE">
+            <Button fx:id="addbtn" layoutX="39.0" layoutY="186.0" mnemonicParsing="false" onAction="#btnadd" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #0009ff; -fx-background-radius: 10px;" text="Add New " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
