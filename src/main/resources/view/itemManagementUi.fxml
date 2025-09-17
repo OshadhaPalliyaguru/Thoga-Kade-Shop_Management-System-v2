@@ -14,29 +14,24 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.itemController.ItemManagamentController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.itemController.ItemManagamentFormController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="546.0" prefWidth="1113.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="557.0" layoutX="-13.0" layoutY="-10.0" stroke="BLACK" strokeType="INSIDE" width="235.0" />
-            <ImageView fitHeight="465.0" fitWidth="150.0" layoutX="8.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/thogakade%20logo.png" />
-               </image>
-            </ImageView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="557.0" layoutX="161.0" layoutY="-12.0" stroke="WHITE" strokeType="INSIDE" style="-fx-arc-height: 60; -fx-arc-width: 60;" width="952.0" />
-            <Button layoutX="39.0" layoutY="478.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: white; -fx-background-radius: 10px;" text="BACK">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="563.0" layoutX="-13.0" layoutY="-10.0" stroke="BLACK" strokeType="INSIDE" width="235.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="565.0" layoutX="161.0" layoutY="-12.0" stroke="WHITE" strokeType="INSIDE" style="-fx-arc-height: 60; -fx-arc-width: 60;" width="952.0" />
+            <Button fx:id="back" layoutX="39.0" layoutY="478.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: white; -fx-background-radius: 10px;" text="BACK">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <TableView layoutX="194.0" layoutY="28.0" prefHeight="227.0" prefWidth="909.0">
+            <TableView fx:id="tbleitems" layoutX="194.0" layoutY="28.0" prefHeight="227.0" prefWidth="909.0">
                <columns>
-                  <TableColumn prefWidth="62.0" text="IC" />
-                  <TableColumn minWidth="1.0" prefWidth="381.0" text="Description" />
-                  <TableColumn minWidth="0.0" prefWidth="104.0" text="PackSize" />
-                  <TableColumn minWidth="1.0" prefWidth="127.0" text="Unit Price" />
-                  <TableColumn minWidth="1.0" prefWidth="234.0" text="IN Stock" />
+                  <TableColumn fx:id="colitemcode" prefWidth="62.0" text="IC" />
+                  <TableColumn fx:id="coldescription" minWidth="1.0" prefWidth="381.0" text="Description" />
+                  <TableColumn fx:id="colpacksize" minWidth="0.0" prefWidth="104.0" text="PackSize" />
+                  <TableColumn fx:id="colunitprice" minWidth="1.0" prefWidth="127.0" text="Unit Price" />
+                  <TableColumn fx:id="colinstock" minWidth="1.0" prefWidth="234.0" text="IN Stock" />
                </columns>
             </TableView>
             <Label layoutX="192.0" layoutY="292.0" text="New Item Code ">
@@ -64,15 +59,10 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="353.0" layoutY="287.0" text="P044" textFill="#0c24ff">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
-            <JFXTextField layoutX="451.0" layoutY="368.0" prefHeight="25.0" prefWidth="186.0" />
-            <JFXTextField layoutX="683.0" layoutY="367.0" prefHeight="25.0" prefWidth="186.0" />
-            <JFXTextField layoutX="902.0" layoutY="367.0" prefHeight="25.0" prefWidth="186.0" />
-            <Button layoutX="39.0" layoutY="186.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #0009ff; -fx-background-radius: 10px;" text="Add New " textFill="WHITE">
+            <JFXTextField fx:id="packsizetxt" layoutX="451.0" layoutY="368.0" prefHeight="25.0" prefWidth="186.0" />
+            <JFXTextField fx:id="unitpricetxt" layoutX="683.0" layoutY="367.0" prefHeight="25.0" prefWidth="186.0" />
+            <JFXTextField fx:id="qtyonhandtxt" layoutX="902.0" layoutY="367.0" prefHeight="25.0" prefWidth="186.0" />
+            <Button fx:id="updatebtn" layoutX="39.0" layoutY="186.0" mnemonicParsing="false" onAction="#btnupdate" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #0009ff; -fx-background-radius: 10px;" text="Add New " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -84,7 +74,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button layoutX="39.0" layoutY="266.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #1dc357; -fx-background-radius: 10px;" text="Update " textFill="WHITE">
+            <Button fx:id="updatebtn" layoutX="39.0" layoutY="266.0" mnemonicParsing="false" onAction="#btnupdate" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #1dc357; -fx-background-radius: 10px;" text="Update " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -96,7 +86,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button layoutX="39.0" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: b91a1a; -fx-background-radius: 10px;" text="Remove" textFill="WHITE">
+            <Button fx:id="removebtn" layoutX="39.0" layoutY="340.0" mnemonicParsing="false" onAction="#btnremove" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: b91a1a; -fx-background-radius: 10px;" text="Remove" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -108,7 +98,13 @@
                   </DropShadow>
                </effect>
             </Button>
-            <JFXTextArea layoutX="192.0" layoutY="379.0" prefHeight="135.0" prefWidth="245.0" />
+            <JFXTextArea fx:id="descriptiontxt" layoutX="192.0" layoutY="379.0" prefHeight="135.0" prefWidth="245.0" />
+            <JFXTextField fx:id="itemCodeid" layoutX="307.0" layoutY="289.0" prefHeight="25.0" prefWidth="186.0" />
+            <ImageView fitHeight="201.0" fitWidth="245.0" layoutX="-17.0" layoutY="-24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/thogakade_logo.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

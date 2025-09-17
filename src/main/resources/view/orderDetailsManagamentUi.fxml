@@ -14,27 +14,21 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="540.0" prefWidth="1123.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.orderDetailsController.OrderDetailsManagamentController">
+<AnchorPane prefHeight="540.0" prefWidth="1123.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.orderDetailsController.OrderDetailsManagamentFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="557.0" layoutX="-3.0" stroke="BLACK" strokeType="INSIDE" width="235.0" />
-      <ImageView fitHeight="465.0" fitWidth="150.0" layoutX="18.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/thogakade%20logo.png" />
-         </image>
-      </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="557.0" layoutX="171.0" stroke="WHITE" strokeType="INSIDE" style="-fx-arc-height: 60; -fx-arc-width: 60;" width="952.0" />
-      <Button layoutX="49.0" layoutY="488.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: white; -fx-background-radius: 10px;" text="BACK">
+      <Button fx:id="backbtn" layoutX="49.0" layoutY="488.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: white; -fx-background-radius: 10px;" text="BACK">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <TableView layoutX="204.0" layoutY="38.0" prefHeight="227.0" prefWidth="909.0">
+      <TableView fx:id="tableorder" layoutX="204.0" layoutY="38.0" prefHeight="227.0" prefWidth="909.0">
          <columns>
-            <TableColumn prefWidth="152.0" text="Order Id" />
-            <TableColumn minWidth="1.0" prefWidth="277.0" text="Item Code" />
-            <TableColumn minWidth="0.0" prefWidth="244.0" text="Order Qty" />
-            <TableColumn minWidth="1.0" prefWidth="235.0" text="Discount" />
+            <TableColumn fx:id="colorderId" prefWidth="152.0" text="Order Id" />
+            <TableColumn fx:id="colitemcode" minWidth="1.0" prefWidth="277.0" text="Item Code" />
+            <TableColumn fx:id="colOrderQty" minWidth="0.0" prefWidth="244.0" text="Order Qty" />
+            <TableColumn fx:id="colDiscount" minWidth="1.0" prefWidth="235.0" text="Discount" />
          </columns>
       </TableView>
       <Label layoutX="202.0" layoutY="302.0" text="New Item Code ">
@@ -62,15 +56,10 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="363.0" layoutY="297.0" text="P044" textFill="#0c24ff">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <JFXTextField layoutX="461.0" layoutY="378.0" prefHeight="25.0" prefWidth="186.0" />
-      <JFXTextField layoutX="693.0" layoutY="377.0" prefHeight="25.0" prefWidth="186.0" />
-      <JFXTextField layoutX="912.0" layoutY="377.0" prefHeight="25.0" prefWidth="186.0" />
-      <Button layoutX="49.0" layoutY="196.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #0009ff; -fx-background-radius: 10px;" text="Add New " textFill="WHITE">
+      <JFXTextField fx:id="packsizetxt" layoutX="461.0" layoutY="378.0" prefHeight="25.0" prefWidth="186.0" />
+      <JFXTextField fx:id="unitpricetxt" layoutX="693.0" layoutY="377.0" prefHeight="25.0" prefWidth="186.0" />
+      <JFXTextField fx:id="qtyonhandTxt" layoutX="912.0" layoutY="377.0" prefHeight="25.0" prefWidth="186.0" />
+      <Button fx:id="addbtn" layoutX="49.0" layoutY="196.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #0009ff; -fx-background-radius: 10px;" text="Add New " textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -82,7 +71,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button layoutX="49.0" layoutY="276.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #1dc357; -fx-background-radius: 10px;" text="Update " textFill="WHITE">
+      <Button fx:id="updatebtn" layoutX="49.0" layoutY="276.0" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #1dc357; -fx-background-radius: 10px;" text="Update " textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -94,7 +83,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button layoutX="49.0" layoutY="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: b91a1a; -fx-background-radius: 10px;" text="Remove" textFill="WHITE">
+      <Button fx:id="removebtn" layoutX="49.0" layoutY="350.0" mnemonicParsing="false" onAction="#remove" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: b91a1a; -fx-background-radius: 10px;" text="Remove" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -106,6 +95,12 @@
             </DropShadow>
          </effect>
       </Button>
-      <JFXTextArea layoutX="202.0" layoutY="389.0" prefHeight="135.0" prefWidth="245.0" />
+      <JFXTextArea fx:id="decriptiontxt" layoutX="202.0" layoutY="389.0" prefHeight="135.0" prefWidth="245.0" />
+      <JFXTextField fx:id="itemCodeTxt" layoutX="325.0" layoutY="299.0" prefHeight="25.0" prefWidth="186.0" />
+      <ImageView fitHeight="203.0" fitWidth="221.0" layoutX="-8.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/thogakade_logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

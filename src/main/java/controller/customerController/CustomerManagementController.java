@@ -1,135 +1,89 @@
 package controller.customerController;
 
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTextField;
 import db.Dbconnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import model.Customer;
 
-import java.net.URL;
 import java.sql.*;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
 
-public class CustomerManagementController implements Initializable {
+public class CustomerManagementController implements CustomerManagamentService {
 
 
-    public JFXTextField salaryTxt;
-    public JFXComboBox city;
-    public ToggleGroup titleGroup;
-    ObservableList<Customer>customers = FXCollections.observableArrayList();
-    @FXML
-    private Button addnewbtn;
+    @Override
+    public void addCustomerDetails(Customer cus){
+        String SQL = "INSERT INTO customer (CustID , CustTitle, CustName, DOB ,salary,CustAddress, City, Province, PostalCode) VALUES(?,?,?,?,?,?,?,?,?);";
 
-    @FXML
-    private JFXTextField address;
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/thogakade","root","3690");
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
-    @FXML
-    private TableView<Customer> custable;
+            preparedStatement.setObject(1,cus.getCustId());
+            preparedStatement.setObject(2,cus.getTitle() );
+            preparedStatement.setObject(3,cus.getName());
+            preparedStatement.setObject(4,cus.getDob());
+            preparedStatement.setObject(5,cus.getSalary());
+            preparedStatement.setObject(6,cus.getAddress());
+            preparedStatement.setObject(7,cus.getCity());
+            preparedStatement.setObject(8,cus.getProvince());
+            preparedStatement.setObject(9,cus.getPostalcode());
 
-    @FXML
-    private DatePicker dateofbirth;
 
-    @FXML
-    private JFXTextField idtxt;
+            preparedStatement.executeUpdate();
 
-    @FXML
-    private JFXRadioButton miss;
 
-    @FXML
-    private JFXRadioButton mr;
 
-    @FXML
-    private JFXRadioButton ms;
-
-    @FXML
-    private JFXTextField namrtxt;
-
-    @FXML
-    private JFXTextField postalcode;
-
-    @FXML
-    private JFXComboBox<?> province;
-
-    @FXML
-    private Button removebtn;
-
-    @FXML
-    private JFXTextField salary;
-
-    @FXML
-    private Button updatebtn;
-
-    public TableColumn colcustomerid;
-    public TableColumn colTitle;
-    public TableColumn colName;
-    public TableColumn coldob;
-    public TableColumn colSalary;
-    public TableColumn coladdress;
-    public TableColumn colcity;
-    public TableColumn colProvince;
-    public TableColumn colPostalcode;
-
-    @FXML
-    void add(ActionEvent event) {
-
-    }
-
-    @FXML
-    void remove(ActionEvent event) {
-
-    }
-
-    @FXML
-    void update(ActionEvent event) {
-int number;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        colcustomerid.setCellValueFactory(new PropertyValueFactory<>("custId"));
-        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        coldob.setCellValueFactory(new PropertyValueFactory<>("dob"));
-        colSalary.setCellFactory(new PropertyValueFactory<>("salary"));
-        coladdress.setCellFactory(new PropertyValueFactory<>("address"));
-        colcity.setCellFactory(new PropertyValueFactory<>("city"));
-        colProvince.setCellFactory(new PropertyValueFactory<>("province"));
-        colPostalcode.setCellValueFactory(new PropertyValueFactory<>("postalcode"));
+  public ObservableList<Customer> getAllDetails(){
+        ObservableList<Customer>customers = FXCollections.observableArrayList();
 
-        loadcustomertble();
+      try {
+          Connection connection = Dbconnection.getDbconnection().getConnection();
+          PreparedStatement preparedStatement = connection.prepareStatement("Select * from customer");
+          ResultSet resultSet = preparedStatement.executeQuery();
 
-    }
+          while (resultSet.next()){
+              customers.add(new Customer(
+                      resultSet.getString("custId"),
+                      resultSet.getString("custtitle"),
+                      resultSet.getString("custname"),
+                      resultSet.getDate("dob").toLocalDate(),
+                      resultSet.getDouble("salary"),
+                      resultSet.getString("custaddress"),
+                      resultSet.getString("city"),
+                      resultSet.getString("province"),
+                      resultSet.getString("postalcode")
 
-    private void loadcustomertble(){
+
+              ));
+          }
+
+
+
+
+      } catch (SQLException e) {
+          throw new RuntimeException(e);
+      }
+
+        return customers;
+  }
+
+    @Override
+    public void deleteCustomer(Customer cus) {
 
         try {
             Connection connection = Dbconnection.getDbconnection().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("Select * from customer");
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()){
-                customers.add(new Customer(
-                        resultSet.getString("custId"),
-                        resultSet.getString("custtitle"),
-                        resultSet.getString("custname"),
-                        resultSet.getDate("dob").toLocalDate(),
-                        resultSet.getDouble("salary"),
-                        resultSet.getString("custaddress"),
-                        resultSet.getString("city"),
-                        resultSet.getString("province"),
-                        resultSet.getString("postalcode")
+            PreparedStatement preparedStatement = connection.prepareStatement("Delete from Customer Where custId = ?");
 
 
-                ));
-            }
-
+            preparedStatement.setObject(1,cus.getCustId());
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

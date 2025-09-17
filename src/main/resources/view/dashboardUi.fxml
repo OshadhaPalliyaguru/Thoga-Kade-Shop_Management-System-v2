@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.dashboardController.DashboardController">
+<AnchorPane prefHeight="550.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.dashboardController.DashboardFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="558.0" stroke="BLACK" strokeType="INSIDE" width="871.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="557.0" layoutX="240.0" stroke="BLACK" strokeType="INSIDE" width="710.0" />
@@ -86,20 +86,41 @@
             </DropShadow>
          </effect>
       </Rectangle>
-      <Button fx:id="customerbtn" layoutX="26.0" layoutY="207.0" mnemonicParsing="false" onAction="#customer" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: white; -fx-background-radius: 5px;" text="Customer">
+      <Button fx:id="customerbtn" layoutX="26.0" layoutY="207.0" mnemonicParsing="false" onAction="#customer" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: c32828; -fx-background-radius: 5px;" text="Customer" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <effect>
+            <DropShadow height="123.58" radius="34.9125" spread="0.14" width="18.07">
+               <color>
+                  <Color red="1.0" opacity="0.8129770755767822" />
+               </color>
+            </DropShadow>
+         </effect>
       </Button>
-      <Button fx:id="itembtn" layoutX="24.0" layoutY="257.0" mnemonicParsing="false" onAction="#item" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: white; -fx-background-radius: 5px;" text="Items">
+      <Button fx:id="itembtn" layoutX="24.0" layoutY="257.0" mnemonicParsing="false" onAction="#item" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #2ab533; -fx-background-radius: 5px;" text="Items" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <effect>
+            <DropShadow height="76.69" radius="27.5875" width="35.66">
+               <color>
+                  <Color green="1.0" blue="0.13333334028720856" />
+               </color>
+            </DropShadow>
+         </effect>
       </Button>
-      <Button fx:id="orderbtn" layoutX="24.0" layoutY="311.0" mnemonicParsing="false" onAction="#order" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: white; -fx-background-radius: 5px;" text="Order">
+      <Button fx:id="orderbtn" layoutX="24.0" layoutY="311.0" mnemonicParsing="false" onAction="#order" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #2143b5; -fx-background-radius: 5px;" text="Order" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <effect>
+            <DropShadow height="100.14" radius="40.7775" width="64.97">
+               <color>
+                  <Color green="0.550000011920929" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
       </Button>
       <BubbleChart layoutX="188.0" layoutY="270.0" prefHeight="274.0" prefWidth="460.0">
         <xAxis>
@@ -109,5 +130,10 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BubbleChart>
+      <ImageView fitHeight="192.0" fitWidth="222.0" layoutX="-28.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/thogakade_logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
